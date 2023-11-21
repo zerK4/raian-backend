@@ -23,9 +23,14 @@ export async function POST(req: Request) {
   const { data }: EmailMessageType = await req.json();
 
   if (!isComplete(data)) {
-    return Response.json({
-      message: "Please complete all the fields!",
-    });
+    return Response.json(
+      {
+        message: "Please complete all the fields!",
+      },
+      {
+        status: 404,
+      }
+    );
   }
 
   try {
